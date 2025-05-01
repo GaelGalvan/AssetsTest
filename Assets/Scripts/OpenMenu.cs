@@ -1,18 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OpenMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public PlayerMovement PMScript;
+    public GameObject Panel;
+
+
+    // Close Button
+    public void ClosePanel()
     {
-        
+        Panel.SetActive(false);
+        PMScript.isPanel = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    // You lose
+    public void lose()
     {
-        
+        SceneManager.LoadScene("You Lose");
     }
+
+    // You win
+    public void win()
+    {
+        SceneManager.LoadScene("You Win");
+    }
+
+
 }

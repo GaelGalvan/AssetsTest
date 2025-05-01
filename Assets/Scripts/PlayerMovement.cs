@@ -9,19 +9,27 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed = 12f;
 
-
+    public GameObject Panel;
     public Transform player;
     [Header("Character Layers")] 
     public LayerMask Matador;
     public LayerMask Woman;
     public LayerMask Napoleon;
+    public LayerMask Chest;
 
+
+    public bool isPanel = false;
 
     // Update is called once per frame
     void Update()
     {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+        if(isPanel)
+        {
+            x = 0;
+            z = 0;
+        }
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
@@ -44,8 +52,24 @@ public class PlayerMovement : MonoBehaviour
             { // Write code here for Napoleon
                 Debug.Log("NEAR Napoleon AND CLICKED");
             }
+
+
+            if(Physics.CheckSphere(player.position, 5f, Chest))
+            {
+                openPanel();
+            }
         } 
 
         
+    }
+
+
+    public void openPanel()
+    {
+        if (Panel != null)
+        {
+            Panel.SetActive(true);
+            isPanel = true;
+        }
     }
 }

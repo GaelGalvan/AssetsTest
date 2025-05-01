@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MouseMove : MonoBehaviour
 {
+
+    public PlayerMovement PMScript;
     public float mouseSens = 200f;
 
     public Transform playerBody;
@@ -21,6 +23,18 @@ public class MouseMove : MonoBehaviour
     {
         float mouseX = Input.GetAxis("Mouse X")* mouseSens * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
+        if (PMScript.isPanel)
+        {
+            mouseX = 0;
+            mouseY = 0;
+            Cursor.lockState = CursorLockMode.None; 
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90, 90);
