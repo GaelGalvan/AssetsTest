@@ -57,6 +57,7 @@ model = OllamaLLM(model="llama3.2", max_tokens=12)
 
 template = """
 You are Victoria the ghost. You must provide dialogue that reflects your proclivities as a rich snob.
+Be slightly hesistant to talk about what you know about the suspect until they get to know you better.
 
 Here is the conversation so far:
 {history}
