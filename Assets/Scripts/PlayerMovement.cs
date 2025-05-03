@@ -17,12 +17,20 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask Napoleon;
     public LayerMask Chest;
 
+    [Header("Near Booleans")] 
+    public bool nearMatador = false;
+    public bool nearWoman = false;
+    public bool nearNapoleon = false;
+
 
     public bool isPanel = false;
 
     // Update is called once per frame
     void Update()
     {
+        nearMatador = false;
+        nearWoman = false;
+        nearNapoleon = false;
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         if(isPanel)
@@ -41,17 +49,23 @@ public class PlayerMovement : MonoBehaviour
             if(Physics.CheckSphere(player.position, 5f, Matador))
             { // Write code here for matador
                 Debug.Log("NEAR MATADOR AND CLICKED");
+                nearMatador = true;
             }
+
 
             if(Physics.CheckSphere(player.position, 5f, Woman))
             { // Write code here for Rebecca?
                 Debug.Log("NEAR WOMAN AND CLICKED");
+                nearWoman = true;
             }
+
             
             if(Physics.CheckSphere(player.position, 5f, Napoleon))
             { // Write code here for Napoleon
                 Debug.Log("NEAR Napoleon AND CLICKED");
+                nearNapoleon = true;
             }
+
 
 
             if(Physics.CheckSphere(player.position, 5f, Chest))
